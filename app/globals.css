@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --marvel: #EC1D24;
 }
 
 @theme inline {
@@ -10,6 +11,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-roboto-condensed);
   --font-mono: var(--font-geist-mono);
+  --color-marvel: var(--marvel);
 }
 
 @media (prefers-color-scheme: dark) {
