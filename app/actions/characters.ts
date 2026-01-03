@@ -1,5 +1,5 @@
 import { fetchApi } from "./api";
-import { Response } from "./types";
+import { BaseResponse } from "./types";
 
 type CharacterApiResponse = {
   id: number;
@@ -9,7 +9,7 @@ type CharacterApiResponse = {
   }
 }
 
-type CharactersResponse = Response & {
+type CharactersResponse = BaseResponse & {
   characters: {
     id: number;
     name: string;
