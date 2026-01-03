@@ -3,7 +3,7 @@
 import { fetchCharacters } from "@/app/actions/characters";
 import CharacterCard from "@/app/components/character-card";
 import CharactersSkeleton from "@/app/components/skeletons/characters-skeleton";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "favorite-ids";
 
@@ -13,26 +13,22 @@ type CharacterItem = {
   imageUrl: string;
 };
 
-export function FavoriteCharacters() {
+export function FavoriteCharacters({ search }: { search?: string }) {
   const [characters, setCharacters] = useState<CharacterItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const ran = useRef(false);
 
   useEffect(() => {
-    if (ran.current) return;
-    ran.current = true;
-
     const ids = JSON.parse(
       localStorage.getItem(STORAGE_KEY) || "[]"
     ) as string[];
 
     (async () => {
       setIsLoading(true);
-      const data = await fetchCharacters({ filters: { ids } });
+      const data = await fetchCharacters({ filters: { ids, search } });
       setCharacters(data.characters);
       setIsLoading(false);
     })();
-  }, []);
+  }, [search]);
 
   if (isLoading) {
     return <CharactersSkeleton count={4} />;
