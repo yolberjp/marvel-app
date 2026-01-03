@@ -1,7 +1,9 @@
+"use server";
+
 import { fetchApi } from "../../../actions/api";
 import { BaseResponse } from "../../../actions/types";
 
-const CHARACTER_PREFIX = '4005';
+const CHARACTER_PREFIX = "4005";
 
 type CharacterApiResponse = {
   id: number;
@@ -10,11 +12,11 @@ type CharacterApiResponse = {
   issue_credits: {
     id: number;
     name: string;
-  }[]
+  }[];
   image: {
     super_url: string;
-  }
-}
+  };
+};
 
 type CharacterResponse = BaseResponse & {
   character: {
@@ -27,14 +29,16 @@ type CharacterResponse = BaseResponse & {
     }[];
     imageUrl: string;
   };
-}
+};
 
-export async function fetchCharacter(id: string): Promise<CharacterResponse>{
+export async function fetchCharacter(id: string): Promise<CharacterResponse> {
   const response = await fetchApi(`character/${CHARACTER_PREFIX}-${id}`);
 
   const characterData: CharacterApiResponse = response.results;
 
-  const comics = characterData.issue_credits.filter(comic => comic.name !== null && comic.name !== "").slice(-20);
+  const comics = characterData.issue_credits
+    .filter((comic) => comic.name !== null && comic.name !== "")
+    .slice(-20);
 
   return {
     character: {

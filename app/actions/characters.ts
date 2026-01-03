@@ -1,3 +1,5 @@
+"use server";
+
 import { fetchApi } from "./api";
 import { BaseResponse } from "./types";
 
@@ -6,8 +8,8 @@ type CharacterApiResponse = {
   name: string;
   image: {
     small_url: string;
-  }
-}
+  };
+};
 
 type CharactersResponse = BaseResponse & {
   characters: {
@@ -15,12 +17,31 @@ type CharactersResponse = BaseResponse & {
     name: string;
     imageUrl: string;
   }[];
-}
+};
 
-export async function fetchCharacters({ search }: { search?: string }): Promise<CharactersResponse> {
+type FetchCharactersProps = {
+  limit?: number;
+  filters: {
+    search?: string;
+    ids?: string[];
+  };
+};
 
-  const response = await fetchApi('characters', { limit: '50', filter: `name:${search ?? ''}` });
+export async function fetchCharacters({
+  limit = 50,
+  filters,
+}: FetchCharactersProps): Promise<CharactersResponse> {
+  const formattedFilters = [
+    filters.search ? `name:${filters.search}` : null,
+    filters.ids && filters.ids.length ? `id:${filters.ids.join("|")}` : null,
+  ]
+    .filter(Boolean)
+    .join(",");
 
+  const response = await fetchApi("characters", {
+    limit: limit.toString(),
+    filter: formattedFilters,
+  });
   return {
     characters: response.results.map((character: CharacterApiResponse) => ({
       id: character.id,

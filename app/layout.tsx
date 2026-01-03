@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto_Condensed } from "next/font/google";
 import "./globals.css";
-import { HeaderFavoriteButton } from "./components/header-favorite-button";
-import Image from "next/image";
-import Link from "next/link";
-
+import { FavoriteCharactersProvider } from "./contexts/FavoriteCharactersContext";
+import { Header } from "./components/header";
 
 const robotoCondensed = Roboto_Condensed({
   variable: "--font-roboto-condensed",
@@ -27,19 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${robotoCondensed.variable} antialiased`}
-      >
-        <header className="sticky top-0 z-50">
-          <div className="flex flex-row justify-between items-center px-12 py-4 w-full h-fit bg-black border-b border-b-header text-white">
-            <Link href="/">
-              <Image src="/marvel.svg" alt="Marvel Logo" width={130} height={52} />
-            </Link>
-
-            <HeaderFavoriteButton />
-          </div>
-        </header>
+      <body className={`${robotoCondensed.variable} antialiased`}>
+        <FavoriteCharactersProvider>
+          <Header />
           {children}
+        </FavoriteCharactersProvider>
       </body>
     </html>
   );
