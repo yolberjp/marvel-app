@@ -17,8 +17,9 @@ type CharactersResponse = BaseResponse & {
   }[];
 }
 
-export async function fetchCharacters(): Promise<CharactersResponse> {
-  const response = await fetchApi('characters', { limit: '50' });
+export async function fetchCharacters({ search }: { search?: string }): Promise<CharactersResponse> {
+
+  const response = await fetchApi('characters', { limit: '50', filter: `name:${search ?? ''}` });
 
   return {
     characters: response.results.map((character: CharacterApiResponse) => ({
