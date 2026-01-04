@@ -3,10 +3,8 @@
 import { fetchCharacters } from "@/app/actions/characters";
 import CharacterCard from "@/app/components/character-card";
 import SearchCharacter from "@/app/components/search-character";
-import CharactersSkeleton from "@/app/components/skeletons/characters-skeleton";
+import { useFavoriteCharacters } from "@/app/contexts/FavoriteCharactersContext";
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "favorite-ids";
 
 type CharacterItem = {
   id: number;
@@ -15,29 +13,32 @@ type CharacterItem = {
 };
 
 export function FavoriteCharacters({ search }: { search?: string }) {
+  const { ids } = useFavoriteCharacters();
   const [characters, setCharacters] = useState<CharacterItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const ids = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || "[]"
-    ) as string[];
-
     (async () => {
-      setIsLoading(true);
-      const data = await fetchCharacters({ filters: { ids, search } });
-      setCharacters(data.characters);
+      let charactersData: CharacterItem[] = [];
+      if (ids.length) {
+        const data = await fetchCharacters({
+          filters: {
+            ids: ids.map(String),
+            search,
+          },
+        });
+        charactersData = data.characters;
+      }
+      setCharacters(charactersData);
       setIsLoading(false);
     })();
-  }, [search]);
-
-  if (isLoading) {
-    return <CharactersSkeleton count={4} />;
-  }
+  }, [ids, search]);
 
   return (
     <>
-      <SearchCharacter totalResults={characters.length} />
+      <SearchCharacter
+        totalResults={isLoading ? undefined : characters.length}
+      />
 
       <div className="grid grid-cols-[repeat(auto-fill,minmax(188px,188px))] justify-center gap-x-2 gap-y-8 md:gap-4 px-4 md:px-12">
         {characters.map((character) => (
