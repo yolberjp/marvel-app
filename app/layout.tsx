@@ -1,32 +1,32 @@
-import type { Metadata } from "next";
-import { Roboto_Condensed } from "next/font/google";
-import "./globals.css";
-import { FavoriteCharactersProvider } from "./contexts/favorite-characters-context";
-import { Header } from "./components/header";
+import type { Metadata } from 'next'
+import { Roboto_Condensed } from 'next/font/google'
+import './globals.css'
+import { FavoriteCharactersProvider } from './contexts/favorite-characters-context'
+import { Header } from './components/header'
 
 const robotoCondensed = Roboto_Condensed({
-  variable: "--font-roboto-condensed",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+  variable: '--font-roboto-condensed',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
 
 export const metadata: Metadata = {
-  title: "Marvel App",
-  description: "All the Marvel characters you love, in one place.",
+  title: 'Marvel App',
+  description: 'All the Marvel characters you love, in one place.',
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.ico',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
       <body
-        className={`${robotoCondensed.variable} flex flex-col min-h-screen antialiased`}
+        className={`${robotoCondensed.variable} flex min-h-screen flex-col antialiased`}
       >
         <FavoriteCharactersProvider>
           <Header />
@@ -34,5 +34,5 @@ export default function RootLayout({
         </FavoriteCharactersProvider>
       </body>
     </html>
-  );
+  )
 }

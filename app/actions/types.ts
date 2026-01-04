@@ -1,4 +1,4 @@
 export type BaseResponse = {
-    status_code: number;
-    error: string | null;
+  status_code: number
+  error: string | null
 }

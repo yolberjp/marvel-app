@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import { HeartIcon } from "../icons/heart";
-import { useFavoriteCharacters } from "../../contexts/favorite-characters-context";
-import LinkWithLoader from "../LinkLoader";
+import { HeartIcon } from '../icons/heart'
+import { useFavoriteCharacters } from '../../contexts/favorite-characters-context'
+import LinkWithLoader from '../LinkLoader'
 
 export function HeaderFavoriteButton() {
-  const { ids } = useFavoriteCharacters();
+  const { ids } = useFavoriteCharacters()
 
   return (
     <LinkWithLoader
       href="/favorites"
-      className="inline-flex gap-2 items-center p-2 text-white"
+      className="inline-flex items-center gap-2 p-2 text-white"
     >
-      <HeartIcon className="w-6 h-6" />
+      <HeartIcon className="h-6 w-6" />
       {ids.length}
     </LinkWithLoader>
-  );
+  )
 }

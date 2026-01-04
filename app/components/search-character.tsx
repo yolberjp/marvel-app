@@ -1,25 +1,25 @@
-"use client";
+'use client'
 
-import { Suspense } from "react";
-import SearchInput from "./search-input";
+import { Suspense } from 'react'
+import SearchInput from './search-input'
 
 type SearchCharacterProps = {
-  totalResults?: number;
-};
+  totalResults?: number
+}
 
 export default function SearchCharacter({
   totalResults,
 }: SearchCharacterProps) {
   return (
-    <div className="w-full px-4 md:px-12 min-h-20">
+    <div className="min-h-20 w-full px-4 md:px-12">
       <Suspense>
         <SearchInput />
       </Suspense>
       {totalResults !== undefined && (
-        <p className="text-gray-500 uppercase py-2 pl-10">
+        <p className="py-2 pl-10 text-gray-500 uppercase">
           {totalResults} Results
         </p>
       )}
     </div>
-  );
+  )
 }

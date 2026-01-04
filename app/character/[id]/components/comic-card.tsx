@@ -1,18 +1,18 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 type ComicCardProps = {
-  id: number;
-  name: string;
-  coverDate: string | null;
-  imageUrl?: string;
-};
+  id: number
+  name: string
+  coverDate: string | null
+  imageUrl?: string
+}
 
 export function ComicCard({ name, coverDate, imageUrl }: ComicCardProps) {
-  const year = coverDate ? new Date(coverDate).getFullYear() : null;
+  const year = coverDate ? new Date(coverDate).getFullYear() : null
 
   return (
-    <div className="flex flex-col gap-2 group">
-      <div className="flex flex-col justify-center w-42 h-63 bg-black">
+    <div className="group flex flex-col gap-2">
+      <div className="flex h-63 w-42 flex-col justify-center bg-black">
         {imageUrl && (
           <Image
             src={imageUrl}
@@ -21,11 +21,11 @@ export function ComicCard({ name, coverDate, imageUrl }: ComicCardProps) {
             height={0}
             sizes="100vw"
             loading="eager"
-            className="object-cover object-top w-full h-auto"
+            className="h-auto w-full object-cover object-top"
           />
         )}
       </div>
-      <h4 className="font-bold text-wrap leading-tight group-hover:text-marvel">
+      <h4 className="group-hover:text-marvel leading-tight font-bold text-wrap">
         {name}
       </h4>
       {year && (
@@ -34,5 +34,5 @@ export function ComicCard({ name, coverDate, imageUrl }: ComicCardProps) {
         </p>
       )}
     </div>
-  );
+  )
 }

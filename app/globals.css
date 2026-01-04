@@ -1,9 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --marvel-color: #EC1D24;
+  --marvel-color: #ec1d24;
   --header--border-color: #333333;
 }
 

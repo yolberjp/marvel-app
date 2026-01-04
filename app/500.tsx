@@ -1,28 +1,28 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function Error500() {
   return (
-    <div className="flex flex-col flex-1 h-full">
-      <div className="relative flex flex-col lg:flex-row justify-end lg:justify-between flex-1 max-w-6xl mx-auto">
-        <div className="flex flex-col w-full lg:w-1/2 p-12 justify-center">
-          <h1 className="text-4xl lg:text-5xl font-bold uppercase">
+    <div className="flex h-full flex-1 flex-col">
+      <div className="relative mx-auto flex max-w-6xl flex-1 flex-col justify-end lg:flex-row lg:justify-between">
+        <div className="flex w-full flex-col justify-center p-12 lg:w-1/2">
+          <h1 className="text-4xl font-bold uppercase lg:text-5xl">
             404 - Page Not Found
           </h1>
-          <p className="text-gray-500 text-lg text-balance">
+          <p className="text-lg text-balance text-gray-500">
             Check that you typed the address correctly, go back to your previous
             page or try using our site search to find something specific.
           </p>
         </div>
-        <div className="flex flex-col w-full lg:w-1/2 justify-end items-center">
+        <div className="flex w-full flex-col items-center justify-end lg:w-1/2">
           <Image
             src="/not-found.png"
             alt="Not Found"
             width={619}
             height={744}
-            className="w-100 lg:w-120 h-auto object-cover object-bottom"
+            className="h-auto w-100 object-cover object-bottom lg:w-120"
           />
         </div>
       </div>
     </div>
-  );
+  )
 }

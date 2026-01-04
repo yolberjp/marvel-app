@@ -1,32 +1,32 @@
-"use server";
+'use server'
 
-import { redirect } from "next/navigation";
-import { BaseResponse } from "../types";
-import { fetchApi } from "../api/api";
+import { redirect } from 'next/navigation'
+import { BaseResponse } from '../types'
+import { fetchApi } from '../api/api'
 
 type CharacterApiResponse = {
-  id: number;
-  name: string;
+  id: number
+  name: string
   image: {
-    small_url: string;
-  };
-};
+    small_url: string
+  }
+}
 
 type CharactersResponse = BaseResponse & {
   characters: {
-    id: number;
-    name: string;
-    imageUrl: string;
-  }[];
-};
+    id: number
+    name: string
+    imageUrl: string
+  }[]
+}
 
 type FetchCharactersProps = {
-  limit?: number;
+  limit?: number
   filters: {
-    search?: string;
-    ids?: string[];
-  };
-};
+    search?: string
+    ids?: string[]
+  }
+}
 
 export async function fetchCharacters({
   limit = 50,
@@ -35,20 +35,20 @@ export async function fetchCharacters({
   try {
     const formattedFilters = [
       filters.search ? `name:${filters.search}` : null,
-      filters.ids && filters.ids.length ? `id:${filters.ids.join("|")}` : null,
+      filters.ids && filters.ids.length ? `id:${filters.ids.join('|')}` : null,
     ]
       .filter(Boolean)
-      .join(",");
+      .join(',')
 
-    const response = await fetchApi("characters", {
+    const response = await fetchApi('characters', {
       limit: limit.toString(),
       filter: formattedFilters,
-    });
+    })
 
     if (response.status_code !== 1) {
       throw new Error(
         `api_error_code: ${response.status_code}, api_error_message: ${response.error}`
-      );
+      )
     }
 
     return {
@@ -59,10 +59,9 @@ export async function fetchCharacters({
       })),
       status_code: response.status_code,
       error: response.error,
-    };
+    }
   } catch (e) {
-    const message =
-      e instanceof Error ? e.message : "An unknown error occurred";
-    redirect("/error?status=500&message=" + message);
+    const message = e instanceof Error ? e.message : 'An unknown error occurred'
+    redirect('/error?status=500&message=' + message)
   }
 }

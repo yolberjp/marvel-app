@@ -1,13 +1,13 @@
-import Image from "next/image";
-import LinkWithLoader from "./LinkLoader";
-import TopLoader from "./TopLoader";
-import { Suspense } from "react";
-import { HeaderFavoriteButton } from "./header-favorite-button/header-favorite-button";
+import Image from 'next/image'
+import LinkWithLoader from './LinkLoader'
+import TopLoader from './TopLoader'
+import { Suspense } from 'react'
+import { HeaderFavoriteButton } from './header-favorite-button/header-favorite-button'
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50">
-      <div className="flex flex-row justify-between items-center px-12 py-4 w-full h-fit bg-black border-b border-b-header text-white">
+      <div className="border-b-header flex h-fit w-full flex-row items-center justify-between border-b bg-black px-12 py-4 text-white">
         <LinkWithLoader href="/">
           <Image
             src="/marvel.svg"
@@ -23,5 +23,5 @@ export function Header() {
         <TopLoader />
       </Suspense>
     </header>
-  );
+  )
 }

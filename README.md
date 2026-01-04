@@ -85,6 +85,20 @@ Run ESLint to check for code quality issues:
 pnpm lint
 ```
 
+### Formatting
+
+This project uses Prettier for code formatting. To format all files:
+
+```bash
+pnpm format
+```
+
+To check if files are correctly formatted:
+
+```bash
+pnpm format:check
+```
+
 ### Testing
 
 The application uses Vitest and React Testing Library for unit and component testing.

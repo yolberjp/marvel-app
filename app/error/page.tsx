@@ -1,13 +1,13 @@
-import ErrorPage from "../components/error-page";
+import ErrorPage from '../components/error-page'
 
 export default async function Error({
   searchParams,
 }: {
-  searchParams: Promise<{ status: string; message: string }>;
+  searchParams: Promise<{ status: string; message: string }>
 }) {
-  const { status, message } = await searchParams;
+  const { status, message } = await searchParams
 
-  console.warn(message);
+  console.warn(message)
 
   return (
     <ErrorPage
@@ -15,5 +15,5 @@ export default async function Error({
       title="Something went wrong!"
       message="Sorry, an error occurred while loading this page. Please try again later."
     />
-  );
+  )
 }
