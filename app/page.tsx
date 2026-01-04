@@ -1,20 +1,21 @@
-import { Suspense } from "react";
-import Characters from "./components/characters";
-import CharactersSkeleton from "./components/skeletons/characters-skeleton";
-import SearchInput from "./components/search-input";
+import { CharacterList } from "./components/character-list";
+import { fetchCharacters } from "./actions/characters";
+import SearchCharacter from "./components/search-character";
 
-export default async function Home({searchParams}: {searchParams: Promise<{search: string}>}) {
-const queryParams = await searchParams
-const search = queryParams.search
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ search: string }>;
+}) {
+  const queryParams = await searchParams;
+  const search = queryParams.search;
+
+  const { characters } = await fetchCharacters({ filters: { search } });
 
   return (
-    <div className="flex flex-col gap-6 py-4">
-      <div className="w-full pt-8 px-4 md:px-12">
-        <SearchInput />
-      </div>
-      <Suspense fallback={<CharactersSkeleton />}>
-        <Characters search={search} />
-      </Suspense>
+    <div className="flex flex-col gap-4 py-8">
+      <SearchCharacter totalResults={characters.length} />
+      <CharacterList characters={characters} />;
     </div>
   );
 }

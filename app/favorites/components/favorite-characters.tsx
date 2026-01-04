@@ -2,6 +2,7 @@
 
 import { fetchCharacters } from "@/app/actions/characters";
 import CharacterCard from "@/app/components/character-card";
+import SearchCharacter from "@/app/components/search-character";
 import CharactersSkeleton from "@/app/components/skeletons/characters-skeleton";
 import { useEffect, useState } from "react";
 
@@ -35,13 +36,17 @@ export function FavoriteCharacters({ search }: { search?: string }) {
   }
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(188px,188px))] justify-center gap-x-2 gap-y-8 md:gap-4 px-4 md:px-12">
-      {characters.map((character) => (
-        <CharacterCard
-          key={character.id}
-          character={{ ...character, isFavorite: false }}
-        />
-      ))}
-    </div>
+    <>
+      <SearchCharacter totalResults={characters.length} />
+
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(188px,188px))] justify-center gap-x-2 gap-y-8 md:gap-4 px-4 md:px-12">
+        {characters.map((character) => (
+          <CharacterCard
+            key={character.id}
+            character={{ ...character, isFavorite: false }}
+          />
+        ))}
+      </div>
+    </>
   );
 }
