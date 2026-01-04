@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { fetchApi } from "../../../actions/api";
 import { BaseResponse } from "../../../actions/types";
 
@@ -32,23 +33,35 @@ type CharacterResponse = BaseResponse & {
 };
 
 export async function fetchCharacter(id: string): Promise<CharacterResponse> {
-  const response = await fetchApi(`character/${CHARACTER_PREFIX}-${id}`);
+  try {
+    const response = await fetchApi(`character/${CHARACTER_PREFIX}-${id}`);
 
-  const characterData: CharacterApiResponse = response.results;
+    if (response.status_code !== 1) {
+      throw new Error(
+        `api_error_code: ${response.status_code}, api_error_message: ${response.error}`
+      );
+    }
 
-  const comics = characterData.issue_credits
-    .filter((comic) => comic.name !== null && comic.name !== "")
-    .slice(-20);
+    const characterData: CharacterApiResponse = response.results;
 
-  return {
-    character: {
-      id: characterData.id,
-      name: characterData.name,
-      description: characterData.deck,
-      comics: comics,
-      imageUrl: characterData.image.super_url,
-    },
-    status_code: response.status_code,
-    error: response.error,
-  };
+    const comics = characterData.issue_credits
+      .filter((comic) => comic.name !== null && comic.name !== "")
+      .slice(-20);
+
+    return {
+      character: {
+        id: characterData.id,
+        name: characterData.name,
+        description: characterData.deck,
+        comics: comics,
+        imageUrl: characterData.image.super_url,
+      },
+      status_code: response.status_code,
+      error: response.error,
+    };
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "An unknown error occurred";
+    redirect("/error?status=500&message=" + message);
+  }
 }

@@ -11,7 +11,7 @@ export function ComicCard({ name, coverDate, imageUrl }: ComicCardProps) {
   const year = coverDate ? new Date(coverDate).getFullYear() : null;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 group">
       <div className="flex flex-col justify-center w-42 h-63 bg-black">
         {imageUrl && (
           <Image
@@ -25,8 +25,14 @@ export function ComicCard({ name, coverDate, imageUrl }: ComicCardProps) {
           />
         )}
       </div>
-      <h4 className="font-bold text-wrap leading-tight">{name}</h4>
-      {year && <p className="text-sm leading-tight text-gray-500">{year}</p>}
+      <h4 className="font-bold text-wrap leading-tight group-hover:text-marvel">
+        {name}
+      </h4>
+      {year && (
+        <p className="text-sm leading-tight text-gray-500 group-hover:text-inherit">
+          {year}
+        </p>
+      )}
     </div>
   );
 }

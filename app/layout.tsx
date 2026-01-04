@@ -25,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${robotoCondensed.variable} antialiased`}>
+      <body
+        className={`${robotoCondensed.variable} flex flex-col min-h-screen antialiased`}
+      >
         <FavoriteCharactersProvider>
           <Header />
           {children}
