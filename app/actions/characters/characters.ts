@@ -1,8 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { fetchApi } from "./api";
-import { BaseResponse } from "./types";
+import { BaseResponse } from "../types";
+import { fetchApi } from "../api/api";
 
 type CharacterApiResponse = {
   id: number;
