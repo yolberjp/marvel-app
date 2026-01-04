@@ -1,8 +1,8 @@
 "use client";
 
-import { useFavoriteCharacters } from "../contexts/FavoriteCharactersContext";
-import { HeartIcon } from "./icons/heart";
-import { HeartOffIcon } from "./icons/heart-off";
+import { HeartIcon } from "../icons/heart";
+import { HeartOffIcon } from "../icons/heart-off";
+import { useFavoriteCharacters } from "../../contexts/favorite-characters-context";
 
 type FavoriteButtonProps = {
   characterId: number;

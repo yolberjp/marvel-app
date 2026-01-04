@@ -1,8 +1,8 @@
 "use client";
 
-import { HeartIcon } from "./icons/heart";
-import { useFavoriteCharacters } from "../contexts/FavoriteCharactersContext";
-import LinkWithLoader from "./LinkLoader";
+import { HeartIcon } from "../icons/heart";
+import { useFavoriteCharacters } from "../../contexts/favorite-characters-context";
+import LinkWithLoader from "../LinkLoader";
 
 export function HeaderFavoriteButton() {
   const { ids } = useFavoriteCharacters();

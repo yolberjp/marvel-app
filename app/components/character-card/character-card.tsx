@@ -1,6 +1,6 @@
 import Image from "next/image";
-import FavoriteButton from "./favorite-button";
-import LinkWithLoader from "./LinkLoader";
+import LinkWithLoader from "../LinkLoader";
+import FavoriteButton from "../favorite-button/favorite-button";
 
 type Character = {
   id: number;
