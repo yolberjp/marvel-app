@@ -2,6 +2,7 @@
 
 import { fetchCharacters } from "@/app/actions/characters";
 import CharacterCard from "@/app/components/character-card";
+import LinkWithLoader from "@/app/components/LinkLoader";
 import SearchCharacter from "@/app/components/search-character";
 import { useFavoriteCharacters } from "@/app/contexts/FavoriteCharactersContext";
 import { useEffect, useState } from "react";
@@ -48,6 +49,28 @@ export function FavoriteCharacters({ search }: { search?: string }) {
           />
         ))}
       </div>
+
+      {!isLoading && !search && ids.length === 0 && (
+        <div className="flex flex-col items-center justify-center text-gray-500 py-12">
+          <p>You have no favorites yet,</p>
+          <p>
+            Add some from{" "}
+            <LinkWithLoader href="/" className="text-marvel">
+              here
+            </LinkWithLoader>{" "}
+            to get started
+          </p>
+        </div>
+      )}
+
+      {!isLoading && search && characters.length === 0 && (
+        <div className="flex flex-col items-center justify-center text-gray-500 py-12">
+          <p>
+            <span className="text-marvel uppercase">{`"${search}"`}</span> is
+            not in your favorites
+          </p>
+        </div>
+      )}
     </>
   );
 }
