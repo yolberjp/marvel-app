@@ -14,7 +14,6 @@ type CharacterId = number;
 type FavoriteCharactersContextValue = {
   ids: CharacterId[];
   toggleId: (id: CharacterId) => void;
-  clear: () => void;
 };
 
 const STORAGE_KEY = "favorite-ids";
@@ -57,11 +56,9 @@ export function FavoriteCharactersProvider({
     );
   }, []);
 
-  const clear = useCallback(() => setIds([]), []);
-
   const value = useMemo<FavoriteCharactersContextValue>(
-    () => ({ ids, toggleId, clear }),
-    [ids, toggleId, clear]
+    () => ({ ids, toggleId }),
+    [ids, toggleId]
   );
 
   return (
