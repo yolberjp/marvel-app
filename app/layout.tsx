@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Condensed } from "next/font/google";
 import "./globals.css";
-import { FavoriteCharactersProvider } from "./contexts/FavoriteCharactersContext";
+import { FavoriteCharactersProvider } from "./contexts/favorite-characters-context";
 import { Header } from "./components/header";
 
 const robotoCondensed = Roboto_Condensed({

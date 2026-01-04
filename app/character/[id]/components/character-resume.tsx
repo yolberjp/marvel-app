@@ -1,4 +1,4 @@
-import FavoriteButton from "@/app/components/favorite-button";
+import FavoriteButton from "../../../components/favorite-button/favorite-button";
 import Image from "next/image";
 
 type CharacterResumeProps = {

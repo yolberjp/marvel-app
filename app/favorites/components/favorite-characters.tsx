@@ -1,10 +1,10 @@
 "use client";
 
-import { fetchCharacters } from "@/app/actions/characters";
-import CharacterCard from "@/app/components/character-card";
+import { fetchCharacters } from "@/app/actions/characters/characters";
+import CharacterCard from "@/app/components/character-card/character-card";
 import LinkWithLoader from "@/app/components/LinkLoader";
 import SearchCharacter from "@/app/components/search-character";
-import { useFavoriteCharacters } from "@/app/contexts/FavoriteCharactersContext";
+import { useFavoriteCharacters } from "@/app/contexts/favorite-characters-context";
 import { useEffect, useState } from "react";
 
 type CharacterItem = {

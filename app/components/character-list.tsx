@@ -1,7 +1,7 @@
 "use client";
 
 import { CharacterItem } from "../types";
-import CharacterCard from "./character-card";
+import CharacterCard from "./character-card/character-card";
 
 type CharacterListProps = {
   characters: CharacterItem[];

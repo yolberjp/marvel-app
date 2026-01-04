@@ -1,6 +1,6 @@
-import { CharacterList } from "./components/character-list";
-import { fetchCharacters } from "./actions/characters";
-import SearchCharacter from "./components/search-character";
+import { CharacterList } from "@/app/components/character-list";
+import { fetchCharacters } from "@/app/actions/characters/characters";
+import SearchCharacter from "@/app/components/search-character";
 
 export default async function Home({
   searchParams,

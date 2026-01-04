@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { fetchApi } from "../../../actions/api";
+import { fetchApi } from "../../../actions/api/api";
 import { BaseResponse } from "../../../actions/types";
 
 const ISSUE_PREFIX = "4000";

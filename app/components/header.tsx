@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { HeaderFavoriteButton } from "./header-favorite-button";
 import LinkWithLoader from "./LinkLoader";
 import TopLoader from "./TopLoader";
 import { Suspense } from "react";
+import { HeaderFavoriteButton } from "./header-favorite-button/header-favorite-button";
 
 export function Header() {
   return (
