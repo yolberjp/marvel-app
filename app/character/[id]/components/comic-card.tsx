@@ -14,7 +14,15 @@ export function ComicCard({ name, coverDate, imageUrl }: ComicCardProps) {
     <div className="flex flex-col gap-2">
       <div className="flex flex-col justify-center w-42 h-63 bg-black">
         {imageUrl && (
-          <Image src={imageUrl} alt={name} width={168} height={252} />
+          <Image
+            src={imageUrl}
+            alt={name}
+            width={0}
+            height={0}
+            sizes="100vw"
+            loading="eager"
+            className="object-cover object-top w-full h-auto"
+          />
         )}
       </div>
       <h4 className="font-bold text-wrap leading-tight">{name}</h4>

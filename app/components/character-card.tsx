@@ -16,13 +16,17 @@ type CharacterCardProps = {
 export default function CharacterCard({ character }: CharacterCardProps) {
   return (
     <div className="flex flex-col w-47 group">
-      <LinkWithLoader href={`/character/${character.id}`}>
+      <LinkWithLoader
+        href={`/character/${character.id}`}
+        className="border-b-4 border-b-marvel"
+      >
         <Image
           src={character.imageUrl}
           alt={character.name}
-          width={188}
-          height={188}
-          className="size-47 object-cover object-top border-b-4 border-b-marvel"
+          width={0}
+          height={0}
+          loading="eager"
+          className="aspect-square size-47 object-cover object-top"
         />
       </LinkWithLoader>
 

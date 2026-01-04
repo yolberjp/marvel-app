@@ -17,8 +17,9 @@ export default function CharacterResume({ character }: CharacterResumeProps) {
         <Image
           src={character.imageUrl}
           alt={character.name}
-          width={278}
-          height={278}
+          width={0}
+          height={0}
+          loading="eager"
           className="w-full aspect-square md:size-69 object-cover object-top"
         />
 
